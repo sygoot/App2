@@ -1,4 +1,4 @@
-package controller;
+package com.Hulajnogi.App.controller;
 
 import com.Hulajnogi.App.model.Vehicle;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 public class HomeController {
 
-    @GetMapping
+    @GetMapping 
     public String hello() {
         return "Welcome to the Main Page!";
     }
