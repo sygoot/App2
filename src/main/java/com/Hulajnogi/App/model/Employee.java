@@ -1,26 +1,35 @@
 package com.Hulajnogi.App.model;
 
+import com.Hulajnogi.App.enums.Position;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Data
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String email;
-    private String department; // np. "Customer Service", "Maintenance", "HR", "Management"
+    private Long idEmployee;
 
-    private int salary;
+    @Enumerated(EnumType.STRING)
+    private Position position; // Zakładając, że Position to enum
 
-    public Employee(String name, String email, String department) {
-        this.name = name;
-        this.email = email;
-        this.department = department;
-    }
+    private String userDetails;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "idUser")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    // Konstruktory, gettery, settery itd.
 }
+
