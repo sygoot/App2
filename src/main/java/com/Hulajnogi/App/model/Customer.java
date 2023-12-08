@@ -11,7 +11,7 @@ public class Customer {
     private Long idCustomer;
 
     @Enumerated(EnumType.STRING)
-    private CustomerType type; // Zakładając, że CustomerType to enum
+    private CustomerType type; // np. premium
 
     private String drivingLicenseNumber;
     private Long cardNumber;
