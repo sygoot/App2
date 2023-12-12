@@ -17,6 +17,11 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
+    public Address createAndSaveAddress(Address address){
+
+        return addressRepository.save(address);
+    }
+
     public List<Address> findAllAddresses() {
         return addressRepository.findAll();
     }

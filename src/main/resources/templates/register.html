@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rejestracja Użytkownika</title>
+</head>
+<body>
+<div>
+    <h2>Rejestracja Użytkownika</h2>
+    <form th:action="@{/api/users/register}" method="post" th:object="${user}">
+
+        <h3>Dane Użytkownika</h3>
+        <label for="firstName">Imię:</label>
+        <input type="text" id="firstName" th:field="*{firstName}" required><br>
+
+        <label for="lastName">Nazwisko:</label>
+        <input type="text" id="lastName" th:field="*{lastName}" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required><br>
+
+        <label for="phoneNumber">Numer Telefonu:</label>
+        <input type="tel" id="phoneNumber" th:field="*{phoneNumber}"><br>
+
+        <label for="login">Login:</label>
+        <input type="text" id="login" th:field="*{login}" required><br>
+
+        <label for="password">Hasło:</label>
+        <input type="password" id="password" th:field="*{password}" required><br>
+
+        <label for="birthDate">Data Urodzenia:</label>
+        <input type="date" id="birthDate" th:field="*{birthDate}"><br>
+
+        <h3>Adres</h3>
+        <label for="city">Miasto:</label>
+        <input type="text" id="city" th:field="*{address.city}"><br>
+
+        <label for="street">Ulica:</label>
+        <input type="text" id="street" th:field="*{address.street}"><br>
+
+        <label for="huNumber">Numer Domu:</label>
+        <input type="number" id="huNumber" th:field="*{address.huNumber}"><br>
+
+        <label for="postalCode">Kod Pocztowy:</label>
+        <input type="text" id="postalCode" th:field="*{address.postalCode}"><br>
+
+
+                <h3>Dane Klienta</h3>
+
+        <label for="drivingLicenseNumber">Numer Prawa Jazdy:</label>
+        <input type="text" id="drivingLicenseNumber" th:field="*{customer.drivingLicenseNumber}"><br>
+
+        <label for="cardNumber">Numer Karty:</label>
+        <input type="number" id="cardNumber" th:field="*{customer.cardNumber}"><br>
+
+        <button type="submit">Zarejestruj</button>
+    </form>
+</div>
+</body>
+</html>

@@ -22,7 +22,7 @@ public class VehicleType {
     private Model model; // Zakładając, że Model to enum
 
     @Enumerated(EnumType.STRING)
-    private Type type; // Zakładając, że Type to enum
+    private com.Hulajnogi.App.enums.VehicleType vehicleType; // Zakładając, że Type to enum
 
     private int capacity;
     private double price;

@@ -43,7 +43,7 @@ public class VehicleTypeController {
         if (updatedVehicleType != null) {
             updatedVehicleType.setBrand(vehicleTypeDetails.getBrand());
             updatedVehicleType.setModel(vehicleTypeDetails.getModel());
-            updatedVehicleType.setType(vehicleTypeDetails.getType());
+            updatedVehicleType.setVehicleType(vehicleTypeDetails.getVehicleType());
             updatedVehicleType.setCapacity(vehicleTypeDetails.getCapacity());
             updatedVehicleType.setPrice(vehicleTypeDetails.getPrice());
             vehicleTypeService.saveVehicleType(updatedVehicleType);

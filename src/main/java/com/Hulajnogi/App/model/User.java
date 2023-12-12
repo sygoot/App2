@@ -1,10 +1,6 @@
 package com.Hulajnogi.App.model;
-
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -15,6 +11,7 @@ import java.time.LocalDate;
 @ToString
 @Entity 
 @Table(name = "app_users")
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +24,7 @@ public class User {
     private String login;
     private String password;
     private LocalDate birthDate;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")

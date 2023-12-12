@@ -1,5 +1,6 @@
 package com.Hulajnogi.App.model;
 
+import com.Hulajnogi.App.enums.EmployeeType;
 import com.Hulajnogi.App.enums.Position;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -21,6 +22,9 @@ public class Employee {
     private Position position; // Zakładając, że Position to enum
 
     private String userDetails;
+
+    @Enumerated (EnumType.STRING)
+    private EmployeeType employeeType;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "idUser")
