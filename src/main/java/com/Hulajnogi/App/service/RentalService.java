@@ -31,14 +31,14 @@ public class RentalService {
         return rentalRepository.save(rental);
     }
 
-    public void rentVehicle(Long vehicleId, Long userId) throws Exception {
+    public void rentVehicle(Long idVehicle, Long idUser) throws Exception {
         // Pobierz pojazd z bazy danych
-        Vehicle vehicle = vehicleRepository.findById(vehicleId)
-                .orElseThrow(() -> new Exception("Nie znaleziono pojazdu o id: " + vehicleId));
+        Vehicle vehicle = vehicleRepository.findById(idVehicle)
+                .orElseThrow(() -> new Exception("Nie znaleziono pojazdu o id: " + idVehicle));
 
         // Pobierz użytkownika z bazy danych
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new Exception("Nie znaleziono użytkownika o id: " + userId));
+        User user = userRepository.findById(idUser)
+                .orElseThrow(() -> new Exception("Nie znaleziono użytkownika o id: " + idUser));
 
         // Sprawdź, czy pojazd jest dostępny do wypożyczenia
         if (vehicle.getStatus() != VehicleStatus.AVAILABLE) {

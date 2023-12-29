@@ -10,14 +10,14 @@ import java.util.Optional;
 @Repository
 public interface RentalRepository extends JpaRepository<Rental, Long> {
 
-    // Znajdź wypożyczenie po ID pojazdu
-    List<Rental> findByIdVehicle(Long idVehicle);
-
-    // Znajdź aktywne wypożyczenia użytkownika
-    List<Rental> findByIdUserAndIsActive(Long idUser, boolean isActive);
-
-    // Znajdź pojedyncze wypożyczenie na podstawie ID pojazdu i aktywności
-    Optional<Rental> findByIdVehicleAndIsActive(Long idVehicle, boolean isActive);
+//    // Znajdź wypożyczenie po ID pojazdu
+//    List<Rental> findById(Long idVehicle);
+//
+//    // Znajdź aktywne wypożyczenia użytkownika
+//    List<Rental> findByIdAndIsActive(Long idUser, boolean isActive);
+//
+//    // Znajdź pojedyncze wypożyczenie na podstawie ID pojazdu i aktywności
+//    Optional<Rental> findByIdAndIsActive(Long idVehicle, boolean isActive);
 
 
 }

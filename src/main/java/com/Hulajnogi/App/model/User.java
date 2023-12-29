@@ -1,6 +1,5 @@
 package com.Hulajnogi.App.model;
 import com.Hulajnogi.App.enums.UserRole;
-import com.Hulajnogi.App.enums.VehicleStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,9 +14,10 @@ import java.time.LocalDate;
 @Table(name = "app_users")
 
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUser;
+    private Long id;
 
     private String firstName;
     private String lastName;

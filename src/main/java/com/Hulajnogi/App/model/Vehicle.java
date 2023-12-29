@@ -13,7 +13,7 @@ import lombok.Setter;
 public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idVehicle;
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private VehicleStatus status; // Zakładając, że VehicleStatus to enum

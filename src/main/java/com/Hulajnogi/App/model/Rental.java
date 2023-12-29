@@ -22,7 +22,7 @@ public class Rental {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_id")
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "id")
     private Vehicle vehicle;
 
     private LocalDateTime rentalStart;

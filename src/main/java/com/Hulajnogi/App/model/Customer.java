@@ -16,7 +16,7 @@ public class Customer {
     private String drivingLicenseNumber;
     private Long cardNumber;
     @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "idUser")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @OneToMany(mappedBy = "customer")

@@ -27,7 +27,7 @@ public class Employee {
     private EmployeeType employeeType;
 
     @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "idUser")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
