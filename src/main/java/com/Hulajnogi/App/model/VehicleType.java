@@ -1,7 +1,8 @@
 package com.Hulajnogi.App.model;
 
-import com.Hulajnogi.App.enums.*;
+import com.Hulajnogi.App.enums.scooterType;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,14 +16,12 @@ public class VehicleType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idModel;
 
-    @Enumerated(EnumType.STRING)
-    private Brand brand; // Zakładając, że Brand to enum
+    private String brand; // Zakładając, że Brand to enum
+
+    private String model; // Zakładając, że Model to enum
 
     @Enumerated(EnumType.STRING)
-    private Model model; // Zakładając, że Model to enum
-
-    @Enumerated(EnumType.STRING)
-    private com.Hulajnogi.App.enums.VehicleType vehicleType; // Zakładając, że Type to enum
+    private scooterType vehicleType; // Zakładając, że Type to enum
 
     private int capacity;
     private double price;

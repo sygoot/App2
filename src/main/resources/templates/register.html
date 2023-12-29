@@ -6,7 +6,7 @@
 <body>
 <div>
     <h2>Rejestracja Użytkownika</h2>
-    <form th:action="@{/api/users/register}" method="post" th:object="${user}">
+    <form th:action="@{/api/users/register}" method="post" th:object="${registrationDto}">
 
         <h3>Dane Użytkownika</h3>
         <label for="firstName">Imię:</label>
@@ -32,25 +32,25 @@
 
         <h3>Adres</h3>
         <label for="city">Miasto:</label>
-        <input type="text" id="city" th:field="*{address.city}"><br>
+        <input type="text" id="city" th:field="*{city}"><br>
 
         <label for="street">Ulica:</label>
-        <input type="text" id="street" th:field="*{address.street}"><br>
+        <input type="text" id="street" th:field="*{street}"><br>
 
         <label for="huNumber">Numer Domu:</label>
-        <input type="number" id="huNumber" th:field="*{address.huNumber}"><br>
+        <input type="number" id="huNumber" th:field="*{huNumber}"><br>
 
         <label for="postalCode">Kod Pocztowy:</label>
-        <input type="text" id="postalCode" th:field="*{address.postalCode}"><br>
+        <input type="text" id="postalCode" th:field="*{postalCode}"><br>
 
 
                 <h3>Dane Klienta</h3>
 
         <label for="drivingLicenseNumber">Numer Prawa Jazdy:</label>
-        <input type="text" id="drivingLicenseNumber" th:field="*{customer.drivingLicenseNumber}"><br>
+        <input type="text" id="drivingLicenseNumber" th:field="*{drivingLicenseNumber}"><br>
 
         <label for="cardNumber">Numer Karty:</label>
-        <input type="number" id="cardNumber" th:field="*{customer.cardNumber}"><br>
+        <input type="number" id="cardNumber" th:field="*{cardNumber}"><br>
 
         <button type="submit">Zarejestruj</button>
     </form>

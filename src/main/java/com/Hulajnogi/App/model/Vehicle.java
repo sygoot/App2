@@ -20,7 +20,7 @@ public class Vehicle {
 
     private int range;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "model_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="id_model")
     private VehicleType vehicleType;
 }

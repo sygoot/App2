@@ -1,10 +1,12 @@
 package com.Hulajnogi.App.controller;
 
 import com.Hulajnogi.App.DTO.UserRegistrationDto;
+import com.Hulajnogi.App.enums.UserRole;
 import com.Hulajnogi.App.model.Address;
 import com.Hulajnogi.App.model.Customer;
 import com.Hulajnogi.App.model.User;
 import com.Hulajnogi.App.service.AddressService;
+import com.Hulajnogi.App.service.CustomerService;
 import com.Hulajnogi.App.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,15 +21,16 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final AddressService addressService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private final CustomerService customerService;
+
 
     @Autowired
-    public UserController(UserService userService, AddressService addressService) {
+    public UserController(UserService userService, AddressService addressService, CustomerService customerService) {
         this.userService = userService;
         this.addressService = addressService;
+        this.customerService = customerService;
     }
 
 
@@ -53,34 +56,68 @@ public class UserController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute UserRegistrationDto registrationDto) {
+        // Tworzenie obiektu User
         User user = convertToUser(registrationDto);
+
+        // Zapisanie obiektu Address w bazie danych
+        Address address = user.getAddress();
+        addressService.saveAddress(address); // Zakładam, że masz odpowiednią usługę do obsługi adresów
+
+        // Przypisanie adresu do użytkownika
+        user.setAddress(address);
+
+        // Sprawdź, czy użytkownik dostarczył numer karty kredytowej
+        if (registrationDto.getCardNumber() == null) {
+
+        } else {
+            // Jeśli dostarczył numer karty kredytowej, przypisz rolę "CUSTOMER"
+            user.addRole(UserRole.valueOf("CUSTOMER"));
+        }
+
         userService.saveUser(user);
-        // Możesz także zapisać adres i klienta, jeśli to potrzebne
+
+        // Możesz także zapisać adres, jeśli to potrzebne
+
         return "redirect:/registration_success"; // Zakładam, że masz taką stronę
     }
 
-    private User convertToUser(UserRegistrationDto dto) {
-        User user = new User();
-        user.setFirstName(dto.getFirstName());
-        user.setLastName(dto.getLastName());
-        // Set other user properties from dto
+    private User convertToUser(UserRegistrationDto registrationDto) {
 
+        User user = new User();
         Address address = new Address();
-        address.setCity(dto.getCity());
-        address.setStreet(dto.getStreet());
-        address.setHuNumber(dto.getHuNumber());
-        address.setPostalCode(dto.getPostalCode());
+        Customer customer = new Customer();
+
+        user.setFirstName(registrationDto.getFirstName());
+        user.setLastName(registrationDto.getLastName());
+        user.setEmail(registrationDto.getEmail());
+        user.setPhoneNumber(registrationDto.getPhoneNumber());
+        user.setLogin(registrationDto.getLogin());
+        user.setPassword(registrationDto.getPassword());
+        user.setBirthDate(registrationDto.getBirthDate());
+
+
+
+        address.setCity(registrationDto.getCity());
+        address.setStreet(registrationDto.getStreet());
+        address.setHuNumber(registrationDto.getHuNumber());
+        address.setPostalCode(registrationDto.getPostalCode());
         // Set other address properties if needed
 
+
         user.setAddress(address);
+        addressService.saveAddress(address);
 
-        Customer customer = new Customer();
-        customer.setDrivingLicenseNumber(dto.getDrivingLicenseNumber());
-        customer.setCardNumber(dto.getCardNumber());
-        // Set other customer properties if needed
 
-        customer.setUser(user);
-        user.setCustomer(customer); // Zakładając, że masz pole customer w klasie User
+
+
+        customer.setDrivingLicenseNumber(registrationDto.getDrivingLicenseNumber());
+        customer.setCardNumber(registrationDto.getCardNumber());
+
+        customer.setUser(user); // Przypisz użytkownika do klienta przed zapisem
+
+        userService.saveUser(user); // Teraz zapisz użytkownika
+        customerService.saveCustomer(customer); // Na koniec zapisz klienta
+
 
         return user;
     }

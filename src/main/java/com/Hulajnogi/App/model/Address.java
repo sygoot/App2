@@ -15,10 +15,21 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAddress;
+    @Column(nullable = true)
     private String city;
+    @Column(nullable = true)
     private String street;
-    private int huNumber;
+    @Column(nullable = true)
+    private String huNumber;
+    @Column(nullable = true)
     private String postalCode;
+
+    public Address(String city, String street, String huNumber, String postalCode) {
+        this.city = city;
+        this.street = street;
+        this.huNumber = huNumber;
+        this.postalCode = postalCode;
+    }
 
     // Konstruktory, gettery, settery itd.
 }
